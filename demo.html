@@ -1,0 +1,77 @@
+<html>
+
+<head>
+    <title>logs test</title>
+
+</head>
+
+<body>
+    <h2>logs list info </h2>
+    <div class='list'>
+    </div>
+    <div>
+        <p id='content'>
+        </p>
+    </div>
+    <!--<script src="http://s4.dxlfile.com/??public/js/jquery-1.7.2.min.js"></script>-->
+    <!--<script src='core.js'></script>
+    <script src='cipher-core.js'></script>
+    <script src='pad-zeropadding.js'></script>
+    <script src='mode-ecb.js'></script>
+    <script src='aes.js'></script>-->
+    <script src='cryptojs.js'></script>
+
+    <script>
+        var key = "12345678901234567890123456789012" //秘钥必须为：8/16/32位 
+        var message = "18345632587";
+    </script>
+    <script>
+        // //加密
+        // var encrypt2 = CryptoJS.AES.encrypt(message, CryptoJS.enc.Utf8.parse(key), {
+        //     mode: CryptoJS.mode.ECB,
+        //     padding: CryptoJS.pad.Pkcs7
+        // });
+        // console.log("value2 encode: " + encrypt2);
+
+        // //解密
+
+        // var decrypt2 = CryptoJS.AES.decrypt(encrypt2, CryptoJS.enc.Utf8.parse(key), {
+        //     mode: CryptoJS.mode.ECB,
+        //     padding: CryptoJS.pad.Pkcs7
+        // });
+        // console.log("value2: " + decrypt2.toString(CryptoJS.enc.Utf8));
+        function includeJs() {
+            var oHead = document.getElementsByTagName('HEAD').item(0);
+            var oScript = document.createElement("script");
+            oScript.type = "text/javascript";
+            oScript.src = "http://s4.dxlfile.com/public/js/cryptojs.min.js";
+            oHead.appendChild(oScript);
+        }
+
+        function encryptPhone(phone) {
+            var key = "12345678901234567890123456789012" //秘钥
+            var m = phone || '';
+            var encrypt = CryptoJS.AES.encrypt(m, CryptoJS.enc.Utf8.parse(key), {
+                mode: CryptoJS.mode.ECB,
+                padding: CryptoJS.pad.Pkcs7
+            });
+            console.log("value2 encode: " + encrypt);
+            encrypt = (encrypt + '').replace('+', '*');
+            return encrypt;
+        }
+
+        function decryptPhone(phone) {
+            var key = "12345678901234567890123456789012" //秘钥
+            var m = (phone || '').replace('*', '+');
+            var decrypt = CryptoJS.AES.decrypt(m, CryptoJS.enc.Utf8.parse(key), {
+                mode: CryptoJS.mode.ECB,
+                padding: CryptoJS.pad.Pkcs7
+            });
+            console.log("value2 decode: " + decrypt.toString(CryptoJS.enc.Utf8));
+            return decrypt;
+        }
+    </script>
+
+
+
+</html>
